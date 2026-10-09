@@ -2,7 +2,7 @@
 
 **Hari 1 — 30 Days of Code.** Kalkulator patungan (split bill) untuk makan bareng di Indonesia: pajak restoran (PB1) dan service charge ikut kehitung per orang, hasilnya tampil seperti struk kasir dan bisa disalin ke WhatsApp dalam satu ketukan.
 
-🔗 Live: [ISI URL DEPLOY]
+🔗 Live: https://kayzenn123.github.io/agent-patungan/
 
 ## Kenapa dibuat
 
