@@ -176,6 +176,7 @@ $("input-service").addEventListener("change",function(e){
   state.svcPct=v;simpan();renderHasil();
 });
 $("btn-contoh").addEventListener("click",function(){
+  err("err-orang","");err("err-item","");
   state={orang:["Andi","Bima","Caca"],items:[
     {nama:"Nasi goreng spesial",harga:35000,peserta:["Andi","Bima","Caca"]},
     {nama:"Ayam geprek",harga:22000,peserta:["Andi","Caca"]},
@@ -184,9 +185,17 @@ $("btn-contoh").addEventListener("click",function(){
   ],pb1:true,service:true,svcPct:5};
   pickSet=new Set(state.orang);simpan();render();
 });
+var resetArm=false,resetTimer=null;
 $("btn-reset").addEventListener("click",function(){
   if(!state.orang.length&&!state.items.length)return;
-  if(!confirm("Hapus semua data dan mulai dari awal?"))return;
+  var b=$("btn-reset");
+  if(!resetArm){
+    resetArm=true;b.textContent="Yakin? Klik lagi untuk hapus";
+    b.setAttribute("aria-live","polite");
+    resetTimer=setTimeout(function(){resetArm=false;b.textContent="Mulai dari awal";},4000);
+    return;
+  }
+  clearTimeout(resetTimer);resetArm=false;b.textContent="Mulai dari awal";
   state={orang:[],items:[],pb1:false,service:false,svcPct:5};
   pickSet=new Set();simpan();render();
 });
