@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Patungan — bagi tagihan makan bareng tanpa drama. Hitung pajak restoran (PB1) dan service charge per orang, salin hasilnya ke WhatsApp.">
+<meta name="theme-color" content="#FFF8EE">
+<title>Patungan — Bagi Tagihan Tanpa Drama</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧾</text></svg>">
+</head>
+<body>
+<a class="skip" href="#hasil">Lewati ke hasil</a>
+
+<header class="hero">
+  <p class="kicker">30 Days of Code · Hari 1</p>
+  <h1>Patungan<span class="dot">.</span></h1>
+  <p class="tagline">Bagi tagihan makan bareng tanpa drama. Pajak restoran dan service charge ikut kehitung — adil sampai rupiah terakhir.</p>
+</header>
+
+<main class="layout">
+  <div class="panel-input">
+    <section class="card" aria-labelledby="h-orang">
+      <h2 id="h-orang">1 · Siapa aja yang ikut?</h2>
+      <form id="form-orang" novalidate>
+        <div class="row">
+          <div class="field grow">
+            <label for="input-nama">Nama</label>
+            <input id="input-nama" name="nama" type="text" maxlength="24" placeholder="cth: Andi" autocomplete="off">
+          </div>
+          <button type="submit" class="btn primary">Tambah</button>
+        </div>
+        <p class="err" id="err-orang" role="alert" hidden></p>
+      </form>
+      <ul id="daftar-orang" class="chips" aria-label="Daftar orang"></ul>
+      <p class="hint" id="hint-orang">Belum ada orang. Tambahkan minimal 2 orang biar bisa patungan.</p>
+    </section>
+
+    <section class="card" aria-labelledby="h-item">
+      <h2 id="h-item">2 · Pesan apa aja?</h2>
+      <form id="form-item" novalidate>
+        <div class="row wrap">
+          <div class="field grow">
+            <label for="input-item">Nama menu</label>
+            <input id="input-item" name="item" type="text" maxlength="40" placeholder="cth: Nasi goreng spesial" autocomplete="off">
+          </div>
+          <div class="field harga">
+            <label for="input-harga">Harga (Rp)</label>
+            <input id="input-harga" name="harga" type="text" inputmode="numeric" placeholder="cth: 35000" autocomplete="off">
+          </div>
+        </div>
+        <fieldset class="peserta-pick">
+          <legend>Dimakan siapa? <span class="legend-note">(yang nggak ikut, nggak bayar item ini)</span></legend>
+          <div id="pick-peserta" class="chips check"></div>
+        </fieldset>
+        <div class="row">
+          <button type="submit" class="btn primary">Tambah menu</button>
+          <button type="button" class="btn ghost" id="btn-contoh">Isi contoh</button>
+        </div>
+        <p class="err" id="err-item" role="alert" hidden></p>
+      </form>
+      <ul id="daftar-item" class="items" aria-label="Daftar menu"></ul>
+      <p class="hint" id="hint-item">Belum ada menu. Tambahkan manual, atau pakai tombol “Isi contoh” buat lihat cara kerjanya.</p>
+    </section>
+
+    <section class="card" aria-labelledby="h-pajak">
+      <h2 id="h-pajak">3 · Pajak &amp; layanan</h2>
+      <p class="note">Aktifkan hanya kalau <strong>belum termasuk</strong> di nota — biar nggak kehitung dua kali.</p>
+      <div class="toggles">
+        <label class="switch">
+          <input type="checkbox" id="tgl-pb1">
+          <span class="track" aria-hidden="true"></span>
+          <span class="lbl">PB1 · pajak restoran <strong>10%</strong><br><small>dihitung dari subtotal + service</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="tgl-service">
+          <span class="track" aria-hidden="true"></span>
+          <span class="lbl">Service charge<br><small>standar Indonesia 5–10%</small></span>
+        </label>
+        <div class="field svc-field" id="svc-field" hidden>
+          <label for="input-service">Besar service (%)</label>
+          <input id="input-service" type="number" min="0" max="20" step="0.5" value="5">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="panel-hasil">
+    <section class="struk" aria-labelledby="h-hasil" aria-live="polite">
+      <div class="struk-inner">
+        <p class="struk-brand">★ PATUNGAN ★</p>
+        <p class="struk-sub" id="struk-tanggal">struk patungan</p>
+        <hr class="dash">
+        <h2 id="h-hasil" class="struk-title">Rincian bayar</h2>
+        <div id="hasil">
+          <p class="struk-empty">Belum ada hitungan.<br>Tambahkan orang &amp; menu dulu, ya.</p>
+        </div>
+        <hr class="dash">
+        <p class="struk-foot">terima kasih sudah patungan ✨<br><small>dihitung otomatis · tanpa drama</small></p>
+      </div>
+    </section>
+    <div class="aksi">
+      <button type="button" class="btn primary block" id="btn-wa">Salin untuk WhatsApp</button>
+      <button type="button" class="btn ghost block" id="btn-reset">Mulai dari awal</button>
+      <p class="copy-ok" id="copy-ok" role="status" hidden>✓ Tersalin! Tempel langsung di grup WA.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <p>Patungan · Hari 1 dari 30 Days of Code · data tersimpan di browser kamu saja</p>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
