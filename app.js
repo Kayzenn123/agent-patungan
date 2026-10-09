@@ -62,14 +62,13 @@ function renderOrang(){
 function renderPick(){
   var box=$("pick-peserta");box.innerHTML="";
   if(!state.orang.length){
-    box.innerHTML='<li class="hint" style="list-style:none">Tambahkan orang dulu di langkah 1.</li>';return;
+    box.innerHTML='<p class="hint">Tambahkan orang dulu di langkah 1.</p>';return;
   }
   state.orang.forEach(function(o){
-    var li=document.createElement("li");
     var b=document.createElement("button");b.type="button";b.className="chip";
     b.textContent=o;b.setAttribute("aria-pressed",pickSet.has(o)?"true":"false");
     b.onclick=function(){pickSet.has(o)?pickSet.delete(o):pickSet.add(o);renderPick();};
-    li.appendChild(b);box.appendChild(li);
+    box.appendChild(b);
   });
 }
 var pickSet=new Set();
